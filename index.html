@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Chair's Table</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Fraunces:ital,opsz,wght@1,9..144,600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE playful, warm, a little nostalgic: a lunch the Chair is hosting for her sub-execs
+   IDEA a 1970s lunch club's printed identity: poster, menu insert, desk calendar, ticket and a diner guest check
+   PICTURE a burger plate on a checkerboard disk with fries, soda, pizza and a COME HUNGRY burst; the RSVP is a guest check that gets stamped
+   COLOUR lavender #DFA8EA and chocolate #482525 lead; vanilla #FFF0D9 paper; tomato #F26B50 and butter #F7CF55 accents
+   TYPE Lilita One (display) + DM Sans (text) + Fraunces italic (accent phrases) + Caveat (handwriting)
+   LAYOUT asymmetric bands: lavender hero, ticker, vanilla note, chocolate details on a gingham cloth, lavender RSVP, checker floor footer */
+:root{color-scheme:light;--lav:#DFA8EA;--choco:#482525;--choco2:#6B3A33;--van:#FFF0D9;--paper:#FFFBF2;--tom:#F26B50;--but:#F7CF55}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:16px}
+body{margin:0;background:var(--van);color:var(--choco);font:400 17px/1.6 "DM Sans",system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(5vw,20px);padding-right:max(5vw,20px)}
+.tag{display:inline-flex;align-items:center;gap:8px;margin:0;padding:8px 14px;border-radius:4px;background:var(--choco);color:var(--van);font:700 13px/1.2 "DM Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;transform:rotate(-1.5deg)}
+.tag svg{width:13px;height:13px;color:var(--but);flex:none}
+.tag.but{background:var(--but);color:var(--choco)}
+.tag.but svg{color:var(--tom)}
+.h2{margin:18px 0 0;font:400 clamp(46px,6.4vw,96px)/.92 "Lilita One",sans-serif;text-transform:uppercase;text-wrap:balance}
+.hand{font:700 clamp(22px,2vw,28px)/1.05 Caveat,cursive}
+.wave{position:absolute;left:0;right:0;top:-23px;height:24px;background-repeat:repeat-x;background-size:80px 24px;pointer-events:none}
+.wave.van{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 24'%3E%3Cpath d='M0 14Q20 2 40 14T80 14V24H0Z' fill='%23FFF0D9'/%3E%3C/svg%3E")}
+.wave.choco{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 24'%3E%3Cpath d='M0 14Q20 2 40 14T80 14V24H0Z' fill='%23482525'/%3E%3C/svg%3E")}
+.wave.lav{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 24'%3E%3Cpath d='M0 14Q20 2 40 14T80 14V24H0Z' fill='%23DFA8EA'/%3E%3C/svg%3E")}
+.food{position:absolute;display:block;height:auto;aspect-ratio:1;transform:rotate(var(--r,0deg));animation:bob 4.5s ease-in-out infinite alternate;transition:transform .25s}
+.food:hover{animation-play-state:paused;transform:rotate(calc(var(--r,0deg) - 7deg)) scale(1.06)}
+.sp{position:absolute;display:block;aspect-ratio:1;height:auto;animation:twinkle 2.6s ease-in-out infinite alternate}
+@keyframes bob{to{transform:rotate(var(--r,0deg)) translateY(-7px)}}
+@keyframes twinkle{from{transform:scale(.75) rotate(-8deg);opacity:.75}to{transform:scale(1.08) rotate(8deg);opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes tick{to{transform:translateX(-50%)}}
+@keyframes stamp{0%{transform:rotate(-24deg) scale(1.9);opacity:0}60%{transform:rotate(-6deg) scale(.95);opacity:1}100%{transform:rotate(-8deg) scale(1);opacity:1}}
+
+/* Hero */
+.hero{position:relative;background:var(--lav);overflow:hidden}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:18px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--choco);text-decoration:none;font:400 24px/1 "Lilita One",sans-serif;text-transform:uppercase}
+.logo span:first-child{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--choco);flex:none}
+.logo svg{width:22px;height:22px;color:var(--but)}
+.links{display:flex;align-items:center;gap:26px}
+.links a{color:var(--choco);font:600 16px/1 "DM Sans",sans-serif;text-decoration:none}
+.links a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.links .pill{padding:12px 18px;border:3px solid var(--choco);border-radius:999px;background:var(--van);font:400 17px/1 "Lilita One",sans-serif;text-transform:uppercase;box-shadow:3px 3px 0 var(--choco);transition:transform .15s,box-shadow .15s}
+.links .pill:hover{text-decoration:none;transform:translate(-1px,-1px) rotate(-2deg);box-shadow:5px 5px 0 var(--choco)}
+.hero-in{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-areas:"top art" "bot art";column-gap:clamp(24px,4vw,56px);padding-top:clamp(8px,1.6vw,22px);padding-bottom:clamp(40px,4.5vw,64px)}
+.h-top{grid-area:top;align-self:end}
+.h-bot{grid-area:bot;align-self:start}
+.title{margin:20px 0 0;color:var(--choco);font:400 100px/.88 "Lilita One",sans-serif;text-transform:uppercase}
+.title .ln{display:block;width:max-content;white-space:nowrap;text-shadow:.045em .045em 0 var(--tom)}
+.tagline{margin:20px 0 0;font:italic 600 clamp(24px,2.5vw,36px)/1.15 Fraunces,Georgia,serif;text-wrap:balance}
+.squig{display:block;width:150px;height:16px;margin:24px 0 14px;color:var(--tom)}
+.when{margin:0;display:grid;gap:6px;font:800 clamp(15px,1.35vw,19px)/1.3 "DM Sans",sans-serif;letter-spacing:.05em;text-transform:uppercase}
+.when span{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px}
+.when svg{width:13px;height:13px;color:var(--tom);flex:none}
+.cta-row{display:flex;align-items:center;flex-wrap:wrap;gap:14px 20px;margin-top:28px}
+.cta{appearance:none;display:inline-block;padding:18px 34px;border:3px solid var(--choco);border-radius:999px;background:var(--tom);color:var(--van);font:400 clamp(22px,2vw,28px)/1 "Lilita One",sans-serif;text-transform:uppercase;text-decoration:none;box-shadow:5px 5px 0 var(--choco);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.cta:hover{transform:translate(-2px,-2px) rotate(-2deg);box-shadow:8px 8px 0 var(--choco)}
+.cta:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--choco)}
+.aside{display:flex;align-items:center;gap:4px;color:var(--choco)}
+.aside svg{width:58px;height:30px;transform:scaleX(-1) rotate(8deg);flex:none}
+.art{grid-area:art;align-self:center;position:relative;width:100%;max-width:560px;aspect-ratio:1;margin:0 auto}
+.disk{position:absolute;inset:7%;border-radius:50%;border:5px solid var(--choco);background:repeating-conic-gradient(var(--choco) 0 25%,var(--van) 0 50%) 50% 50%/40px 40px;box-shadow:10px 10px 0 var(--tom)}
+.plate{position:absolute;inset:20%;border-radius:50%;border:5px solid var(--choco);background:var(--van);box-shadow:inset 0 0 0 14px var(--van),inset 0 0 0 17px rgba(72,37,37,.2)}
+.f-burger{left:25%;top:22%;width:50%;--r:-3deg}
+.f-pizza{left:1%;top:3%;width:29%;--r:-24deg;animation-delay:-1.2s}
+.f-fries{left:-2%;top:52%;width:33%;--r:-10deg;animation-delay:-2.4s}
+.f-soda{right:-1%;top:40%;width:28%;--r:8deg;animation-delay:-3.1s}
+.badge{position:absolute;right:-3%;top:-1%;width:33%;aspect-ratio:1;display:grid;place-items:center;transform:rotate(12deg)}
+.badge svg{position:absolute;inset:0;width:100%;height:100%;color:var(--but);animation:spin 36s linear infinite}
+.badge b{position:relative;font:400 clamp(17px,2vw,30px)/.92 "Lilita One",sans-serif;color:var(--tom);text-align:center;text-transform:uppercase;text-shadow:2px 2px 0 var(--choco)}
+.ticker{position:relative;background:var(--choco);color:var(--but);overflow:hidden;padding:14px 0 30px}
+.ticker div{display:flex;width:max-content;animation:tick 42s linear infinite}
+.ticker span{display:flex;align-items:center;gap:22px;padding-right:22px;font:400 24px/1 "Lilita One",sans-serif;text-transform:uppercase;white-space:nowrap}
+.ticker svg{width:18px;height:18px;color:var(--tom)}
+
+/* Note */
+.note{position:relative;background:var(--van)}
+.note-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,96px);align-items:center;padding-top:clamp(56px,7vw,110px);padding-bottom:clamp(64px,8vw,120px)}
+.note-l{position:relative}
+.special{display:flex;align-items:center;gap:14px;margin-top:26px}
+.special svg{width:clamp(110px,12vw,150px);height:auto;aspect-ratio:1;flex:none}
+.special p{margin:0;color:var(--tom);transform:rotate(-4deg)}
+.paper{position:relative;margin:0;padding:52px clamp(22px,3vw,44px) 30px 72px;border:3px solid var(--choco);background:var(--paper);box-shadow:10px 10px 0 var(--choco);transform:rotate(1.6deg);background-image:linear-gradient(90deg,transparent 52px,rgba(242,107,80,.6) 52px 54px,transparent 54px),repeating-linear-gradient(180deg,transparent 0 37px,rgba(223,168,234,.9) 37px 39px);background-position:0 0,0 47px}
+.paper::before{content:"";position:absolute;top:-17px;left:50%;width:128px;height:34px;transform:translateX(-50%) rotate(-3deg);background:rgba(247,207,85,.78);border:2px solid rgba(72,37,37,.2)}
+.paper p{margin:0 0 39px;font:600 clamp(23px,2.1vw,27px)/39px Caveat,cursive}
+.paper .sig{margin:0;font:700 clamp(26px,2.3vw,32px)/39px Caveat,cursive;text-align:right}
+
+/* Details */
+.det{position:relative;background:var(--choco);color:var(--van)}
+.det-in{padding-top:clamp(56px,7vw,100px);padding-bottom:clamp(64px,8vw,110px)}
+.det-hd{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px 32px}
+.det .h2{text-shadow:.045em .045em 0 var(--tom)}
+.det-hd .hand{display:flex;align-items:flex-end;gap:6px;color:var(--but);margin:0 0 6px}
+.det-hd .hand svg{width:56px;height:40px;transform:rotate(70deg);flex:none}
+.cloth{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:clamp(30px,5vw,64px);margin-top:34px;padding:clamp(44px,5vw,70px) clamp(18px,3vw,48px);border:4px solid var(--choco);outline:3px solid var(--van);background:linear-gradient(90deg,rgba(242,107,80,.5) 50%,transparent 0) 0 0/56px 56px,linear-gradient(rgba(242,107,80,.5) 50%,transparent 0) 0 0/56px 56px,var(--van)}
+.cal{width:min(250px,100%);border:4px solid var(--choco);background:var(--van);color:var(--choco);text-align:center;box-shadow:8px 8px 0 var(--choco);transform:rotate(-5deg)}
+.cal-top{position:relative;padding:16px 10px 12px;border-bottom:4px solid var(--choco);background:var(--tom);color:var(--van);font:400 24px/1 "Lilita One",sans-serif;text-transform:uppercase}
+.cal-top::before,.cal-top::after{content:"";position:absolute;top:-14px;left:28%;width:14px;height:26px;border:4px solid var(--choco);border-radius:8px;background:var(--van)}
+.cal-top::after{left:auto;right:28%}
+.cal-num{margin:8px 0 0;font:400 128px/1 "Lilita One",sans-serif}
+.cal-day{margin:0;padding:0 0 18px;font:800 18px/1 "DM Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.clock{position:relative;width:min(270px,100%);aspect-ratio:1;display:grid;place-items:center;text-align:center;color:var(--choco);transform:rotate(5deg)}
+.clock svg{position:absolute;inset:0;width:100%;height:100%}
+.clock .sh{transform:translate(8px,8px);color:var(--choco)}
+.clock .fg{color:var(--but)}
+.clock div{position:relative}
+.clock b{display:block;font:400 clamp(48px,5vw,60px)/1 "Lilita One",sans-serif}
+.clock i{display:block;margin-top:4px;font:italic 600 20px/1.1 Fraunces,Georgia,serif}
+.tkt-w{filter:drop-shadow(8px 8px 0 #482525);transform:rotate(3deg);width:min(340px,100%)}
+.tkt{display:grid;grid-template-columns:58px minmax(0,1fr);border:4px solid var(--choco);background:var(--lav);color:var(--choco);-webkit-mask:radial-gradient(circle at 58px 0,#0000 13px,#000 13.5px) top/100% 51% no-repeat,radial-gradient(circle at 58px 100%,#0000 13px,#000 13.5px) bottom/100% 51% no-repeat;mask:radial-gradient(circle at 58px 0,#0000 13px,#000 13.5px) top/100% 51% no-repeat,radial-gradient(circle at 58px 100%,#0000 13px,#000 13.5px) bottom/100% 51% no-repeat}
+.stub{display:grid;place-items:center;border-right:3px dashed var(--choco);writing-mode:vertical-rl;transform:rotate(180deg);font:400 18px/1 "Lilita One",sans-serif;text-transform:uppercase;letter-spacing:.06em}
+.tkt-m{padding:24px 22px 22px 20px}
+.tkt-m small{display:block;font:800 12px/1 "DM Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.tkt-m strong{display:block;margin-top:8px;font:400 31px/1 "Lilita One",sans-serif;text-transform:uppercase}
+.tkt-m span{display:block;margin-top:6px;font:600 16px/1.3 "DM Sans",sans-serif}
+.tkt-m a{display:inline-block;margin-top:12px;color:var(--choco);font:700 15px/1.3 "DM Sans",sans-serif;text-decoration-thickness:2px;text-underline-offset:4px}
+
+/* RSVP */
+.rsvp{position:relative;background:var(--lav)}
+.rsvp-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,96px);align-items:start;padding-top:clamp(56px,7vw,110px);padding-bottom:clamp(64px,8vw,120px)}
+.rsvp .h2{text-shadow:.045em .045em 0 var(--tom)}
+.rsvp-sub{margin:16px 0 0;font:italic 600 clamp(22px,2.2vw,30px)/1.2 Fraunces,Georgia,serif}
+.r-art{position:relative;width:min(100%,380px);aspect-ratio:1.35;margin-top:24px}
+.r-fries{left:2%;top:6%;width:44%;--r:-8deg}
+.r-soda{left:40%;top:0;width:38%;--r:7deg;animation-delay:-2s}
+.r-note{position:absolute;right:-4%;bottom:6%;display:flex;align-items:center;gap:4px;margin:0;transform:rotate(-6deg)}
+.r-note svg{width:52px;height:30px;flex:none}
+.check{position:relative;border:3px solid var(--choco);background:var(--paper);color:var(--choco);box-shadow:10px 10px 0 var(--choco)}
+.check-hd{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 22px;border-bottom:3px solid var(--choco);background:var(--tom);color:var(--van)}
+.check-hd h3{margin:0;font:400 clamp(24px,2.2vw,30px)/1 "Lilita One",sans-serif;text-transform:uppercase;text-shadow:2px 2px 0 var(--choco)}
+.check-hd span{font:800 15px/1 "DM Sans",sans-serif;letter-spacing:.04em}
+.check-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;padding:10px 22px;border-bottom:2px dashed rgba(72,37,37,.45);font:800 12px/1.4 "DM Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase}
+.check-bd{padding:24px 22px 6px}
+.fld{margin:0 0 24px;padding:0;border:0}
+.lbl{display:block;margin:0 0 4px;padding:0;font:800 13px/1.3 "DM Sans",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.lbl em{font:italic 600 15px/1 Fraunces,Georgia,serif;letter-spacing:0;text-transform:none}
+.inp{display:block;width:100%;min-height:48px;padding:6px 2px;border:0;border-bottom:3px solid var(--choco);border-radius:0;background:transparent;color:var(--choco);font:600 20px/1.3 "DM Sans",sans-serif;outline:none;transition:background .15s,border-color .15s}
+.inp::placeholder{color:rgba(72,37,37,.42);font-weight:500}
+.inp:focus{border-color:var(--tom);background:rgba(223,168,234,.2)}
+textarea.inp{min-height:76px;resize:vertical;font:500 17px/35px "DM Sans",sans-serif;padding:0 2px;border-bottom:0;background:repeating-linear-gradient(180deg,transparent 0 33px,rgba(72,37,37,.38) 33px 35px)}
+textarea.inp:focus{background:repeating-linear-gradient(180deg,transparent 0 33px,var(--tom) 33px 35px),rgba(223,168,234,.2)}
+.opts{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.opt{position:relative;display:block}
+.opt input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.opt span{display:inline-flex;align-items:center;gap:8px;min-height:50px;padding:0 20px;border:3px solid var(--choco);border-radius:999px;background:var(--van);font:700 16px/1.2 "DM Sans",sans-serif;box-shadow:3px 3px 0 var(--choco);transition:transform .15s,background .15s,box-shadow .15s}
+.opt svg{display:none;width:16px;height:16px;color:var(--tom)}
+.opt:hover span{transform:rotate(-2deg)}
+.opt input:checked+span{box-shadow:1px 1px 0 var(--choco);transform:translate(2px,2px)}
+.opt input:checked+span svg{display:block}
+.opt.y input:checked+span{background:var(--but)}
+.opt.n input:checked+span{background:var(--lav)}
+.opt input:focus-visible+span{outline:3px solid var(--tom);outline-offset:3px}
+.err{margin:0 0 16px;padding:10px 12px;border:2px solid #B53A22;background:#FFE2DA;color:#8E2A17;font:600 15px/1.4 "DM Sans",sans-serif}
+.err:empty{display:none}
+.reserve{appearance:none;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:62px;margin-bottom:18px;padding:0 20px;border:3px solid var(--choco);border-radius:999px;background:var(--choco);color:var(--van);font:400 clamp(21px,2vw,25px)/1 "Lilita One",sans-serif;text-transform:uppercase;box-shadow:5px 5px 0 var(--tom);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.reserve:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--tom)}
+.reserve:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--tom)}
+.reserve svg{display:none;width:22px;height:22px;color:var(--but);animation:spin 1.1s linear infinite}
+.reserve.loading{cursor:progress;opacity:.85;transform:none;box-shadow:5px 5px 0 var(--tom)}
+.reserve.loading svg{display:block}
+.reserve:focus-visible,.cta:focus-visible,.links a:focus-visible,.chip:focus-visible,.edit:focus-visible,.tkt-m a:focus-visible{outline:3px solid var(--tom);outline-offset:3px}
+.check-ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 14px;padding:12px 22px 16px;border-top:2px dashed rgba(72,37,37,.45);font:600 14px/1.4 "DM Sans",sans-serif}
+.check-ft i{font:italic 600 15px/1.4 Fraunces,Georgia,serif}
+.check-ft b{white-space:nowrap}
+.done{display:none}
+body[data-a] .ask{display:none}
+body[data-a=yes] .done.y,body[data-a=no] .done.n{display:block}
+.stamp{display:inline-block;margin:6px 0 18px 6px;padding:8px 18px;border:5px solid currentColor;border-radius:10px;font:400 clamp(32px,3.4vw,42px)/1 "Lilita One",sans-serif;text-transform:uppercase;box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 6px currentColor;transform:rotate(-8deg);outline:none}
+.done.y .stamp{color:var(--tom)}
+.done.n .stamp{color:var(--choco2)}
+.stamp.go{animation:stamp .55s cubic-bezier(.2,.9,.3,1.2) both}
+.lines{margin:0 0 18px;padding:0;list-style:none}
+.lines li{display:flex;align-items:baseline;gap:8px;padding:6px 0;font:600 17px/1.4 "DM Sans",sans-serif}
+.lines li i{flex:1 1 24px;border-bottom:2px dotted rgba(72,37,37,.5);transform:translateY(-5px)}
+.lines li span:last-child{max-width:62%;text-align:right;overflow-wrap:anywhere}
+.lines .tot{margin-top:4px;padding-top:12px;border-top:3px double var(--choco);font:400 22px/1.2 "Lilita One",sans-serif;text-transform:uppercase}
+.lines .tot span:last-child{color:var(--tom)}
+.done .msg{margin:0;font:italic 600 clamp(20px,1.8vw,24px)/1.3 Fraunces,Georgia,serif}
+.done .small{margin:8px 0 0;font:500 15px/1.5 "DM Sans",sans-serif}
+.acts{display:flex;align-items:center;flex-wrap:wrap;gap:10px 20px;margin:18px 0 20px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border:3px solid var(--choco);border-radius:999px;background:var(--but);color:var(--choco);font:700 15px/1 "DM Sans",sans-serif;text-decoration:none;box-shadow:3px 3px 0 var(--choco);transition:transform .15s}
+.chip:hover{transform:rotate(-2deg)}
+.chip svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
+.edit{appearance:none;min-height:44px;padding:0 4px;border:0;background:none;color:var(--choco);font:700 15px/1 "DM Sans",sans-serif;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;cursor:pointer}
+
+/* Footer */
+.floor{height:24px;background:repeating-conic-gradient(var(--choco) 0 25%,var(--van) 0 50%) 0 0/24px 24px}
+.foot{background:var(--choco);color:var(--van)}
+.foot-in{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:14px 32px;padding-top:36px;padding-bottom:40px}
+.foot strong{display:block;font:400 32px/1 "Lilita One",sans-serif;color:var(--but);text-transform:uppercase}
+.foot p{margin:8px 0 0;font:500 15px/1.5 "DM Sans",sans-serif;color:rgba(255,240,217,.85)}
+.foot .hand{margin:0;font:700 26px/1.1 Caveat,cursive;color:var(--lav)}
+
+.ribbon{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:30;margin:0;padding:6px 14px;border-radius:999px;background:var(--choco);color:var(--van);font:600 13px/1.2 "DM Sans",sans-serif;white-space:nowrap}
+.ribbon[hidden]{display:none}
+body.preview .nav{padding-top:54px}
+.bits{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden}
+.bit{position:absolute;display:block}
+
+@media(min-width:900px){.check{transform:rotate(.8deg)}}
+@media(max-width:899px){
+  .hero-in{grid-template-columns:minmax(0,1fr);grid-template-areas:"top" "art" "bot"}
+  .art{max-width:440px;margin:28px auto 8px}
+  .note-in,.rsvp-in{grid-template-columns:minmax(0,1fr)}
+  .r-art{width:min(100%,320px);aspect-ratio:1.5}
+  .r-note{right:0;bottom:0}
+  .r-note svg{transform:rotate(75deg)}
+}
+@media(max-width:720px){.links a:not(.pill){display:none}}
+@media(max-width:600px){
+  .logo{font-size:20px}
+  .tag{font-size:12px;letter-spacing:.05em;padding:7px 11px}
+  .tag svg:last-child:not(:first-child){display:none}
+  .logo span:first-child{width:36px;height:36px}
+  .paper{padding:48px 18px 26px 54px;background-image:linear-gradient(90deg,transparent 38px,rgba(242,107,80,.6) 38px 40px,transparent 40px),repeating-linear-gradient(180deg,transparent 0 37px,rgba(223,168,234,.9) 37px 39px)}
+  .cal-num{font-size:110px}
+  .sig span{display:block}
+  .aside svg{display:none}
+  .check-bd{padding:22px 16px 4px}
+  .check-hd,.check-meta,.check-ft{padding-left:16px;padding-right:16px}
+}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media(prefers-reduced-motion:reduce){.food,.sp,.badge svg,.ticker div,.reserve svg{animation:none}.stamp.go{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-star" viewBox="0 0 120 120"><path d="M60.0 6.0L74.1 40.6L111.4 43.3L82.8 67.4L91.7 103.7L60.0 84.0L28.3 103.7L37.2 67.4L8.6 43.3L45.9 40.6Z" fill="currentColor" stroke="#482525" stroke-width="6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 120 120"><path d="M60 6C64 40 80 56 114 60C80 64 64 80 60 114C56 80 40 64 6 60C40 56 56 40 60 6Z" fill="currentColor" stroke="#482525" stroke-width="6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-burst" viewBox="0 0 120 120"><path d="M60.0 2.0L68.3 12.7L79.8 5.5L84.0 18.4L97.3 15.6L96.8 29.1L110.2 31.0L105.1 43.6L117.1 49.9L108.0 60.0L117.1 70.1L105.1 76.4L110.2 89.0L96.8 90.9L97.3 104.4L84.0 101.6L79.8 114.5L68.3 107.3L60.0 118.0L51.7 107.3L40.2 114.5L36.0 101.6L22.7 104.4L23.2 90.9L9.8 89.0L14.9 76.4L2.9 70.1L12.0 60.0L2.9 49.9L14.9 43.6L9.8 31.0L23.2 29.1L22.7 15.6L36.0 18.4L40.2 5.5L51.7 12.7Z" fill="currentColor" stroke="#482525" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 120 60"><g fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 44C30 12 70 8 104 26"/><path d="M88 13L106 27L86 37"/></g></symbol>
+  <symbol id="i-squig" viewBox="0 0 160 16"><path d="M3 8Q13 0 23 8T43 8T63 8T83 8T103 8T123 8T143 8T157 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></symbol>
+  <symbol id="i-burger" viewBox="0 0 120 120"><g stroke="#482525" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M16 56C16 31 36 18 60 18S104 31 104 56Z" fill="#F4B04A"/>
+    <path d="M12 66c0-4 3-7 7-7h82c4 0 7 3 7 7s-3 7-7 7H19c-4 0-7-3-7-7z" fill="#F26B50"/>
+    <rect x="15" y="74" width="90" height="17" rx="8.5" fill="#6B3A33"/>
+    <path d="M13 74h94l-9 11-8-7-9 10-9-9-9 10-9-10-9 10-9-9-9 10-7-8z" fill="#F7CF55"/>
+    <path d="M18 93h84v3c0 7-5 12-12 12H30c-7 0-12-5-12-12z" fill="#F4B04A"/></g>
+    <g fill="#FFF0D9"><ellipse cx="42" cy="36" rx="4" ry="2.2" transform="rotate(-25 42 36)"/><ellipse cx="58" cy="29" rx="4" ry="2.2"/><ellipse cx="75" cy="35" rx="4" ry="2.2" transform="rotate(25 75 35)"/><ellipse cx="50" cy="45" rx="4" ry="2.2" transform="rotate(-10 50 45)"/><ellipse cx="68" cy="45" rx="4" ry="2.2" transform="rotate(12 68 45)"/></g>
+    <path d="M28 44c3-9 10-15 19-17" fill="none" stroke="#FFF0D9" stroke-width="4" stroke-linecap="round" opacity=".7"/></symbol>
+  <symbol id="i-fries" viewBox="0 0 120 120"><g fill="#F7CF55" stroke="#482525" stroke-width="3" stroke-linejoin="round">
+    <rect x="34" y="16" width="11" height="56" rx="2" transform="rotate(-14 39 44)"/><rect x="49" y="8" width="11" height="62" rx="2" transform="rotate(-4 54 39)"/><rect x="64" y="10" width="11" height="60" rx="2" transform="rotate(6 69 40)"/><rect x="77" y="18" width="11" height="54" rx="2" transform="rotate(15 82 45)"/><rect x="42" y="24" width="11" height="48" rx="2" transform="rotate(3 47 48)"/><rect x="58" y="22" width="11" height="50" rx="2" transform="rotate(-2 63 47)"/></g>
+    <path d="M24 56C40 68 80 68 96 56L86 112H34Z" fill="#F26B50" stroke="#482525" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M28 84c20 8 44 8 64 0" fill="none" stroke="#FFF0D9" stroke-width="5"/>
+    <path transform="translate(49 86) scale(.18)" d="M60.0 6.0L74.1 40.6L111.4 43.3L82.8 67.4L91.7 103.7L60.0 84.0L28.3 103.7L37.2 67.4L8.6 43.3L45.9 40.6Z" fill="#F7CF55" stroke="#482525" stroke-width="10" stroke-linejoin="round"/></symbol>
+  <symbol id="i-soda" viewBox="0 0 120 120">
+    <path d="M75 4L63 46" stroke="#482525" stroke-width="10" stroke-linecap="round"/><path d="M75 4L63 46" stroke="#FFF0D9" stroke-width="4" stroke-linecap="round"/><path d="M75 4L63 46" stroke="#F26B50" stroke-width="4" stroke-dasharray="5 5"/>
+    <path d="M30 30h60l-8 82H38z" fill="#FFF0D9"/>
+    <path d="M33.5 46h53l-6.3 64H39.8z" fill="#6B3A33"/>
+    <path d="M34 46c4-5 8-5 13 0s9 5 13 0 8-5 13 0 8 5 13 0" fill="none" stroke="#FFF0D9" stroke-width="4" stroke-linecap="round"/>
+    <rect x="44" y="58" width="14" height="14" rx="3" fill="#FFF0D9" opacity=".55" transform="rotate(-12 51 65)"/><rect x="62" y="66" width="13" height="13" rx="3" fill="#FFF0D9" opacity=".45" transform="rotate(10 68 72)"/>
+    <g fill="#FFF0D9" opacity=".7"><circle cx="50" cy="92" r="2.5"/><circle cx="66" cy="98" r="2"/><circle cx="59" cy="84" r="1.8"/></g>
+    <path d="M32 37h56" stroke="#F26B50" stroke-width="5"/>
+    <path d="M30 30h60l-8 82H38z" fill="none" stroke="#482525" stroke-width="3.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pizza" viewBox="0 0 120 120"><g stroke="#482525" stroke-width="3.5" stroke-linejoin="round">
+    <path d="M60 114L16 26C42 14 78 14 104 26Z" fill="#F7CF55"/>
+    <path d="M12 22C40 6 80 6 108 22L102 34C76 20 44 20 18 34Z" fill="#F4B04A"/>
+    <g fill="#F26B50" stroke-width="3"><circle cx="46" cy="47" r="8"/><circle cx="74" cy="46" r="7.5"/><circle cx="60" cy="71" r="7"/><circle cx="60" cy="95" r="4.5"/></g></g>
+    <g fill="#F4B04A"><ellipse cx="62" cy="52" rx="3" ry="2"/><ellipse cx="50" cy="66" rx="2.5" ry="1.8"/><ellipse cx="70" cy="62" rx="2.5" ry="1.8"/></g></symbol>
+  <symbol id="i-pasta" viewBox="0 0 120 120"><g stroke="#482525" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M86 10L70 46" fill="none"/><path d="M80 8l-3 7M86 10l-3 7M92 12l-3 7" fill="none" stroke-width="3"/>
+    <path d="M22 62c4-22 20-34 38-34s34 12 38 34z" fill="#F7CF55"/>
+    <path d="M34 50c6-5 10 5 16 0s10 5 16 0 10 5 16 0" fill="none" stroke-width="2.5"/>
+    <path d="M38 44c7-12 37-12 44 0c-5 8-39 8-44 0z" fill="#F26B50"/>
+    <circle cx="52" cy="42" r="7" fill="#6B3A33"/><circle cx="68" cy="43" r="6" fill="#6B3A33"/>
+    <path d="M14 60h92c0 26-20 44-46 44S14 86 14 60z" fill="#DFA8EA"/>
+    <path d="M18 74h84" stroke="#FFF0D9" stroke-width="5"/>
+    <rect x="10" y="55" width="100" height="9" rx="4.5" fill="#FFF0D9"/></g></symbol>
+</svg>
+
+<header class="hero" id="top">
+  <nav class="nav wrap" aria-label="Sections">
+    <a class="logo" href="#top" data-go="top"><span><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg></span><span>The Chair’s Table</span></a>
+    <div class="links">
+      <a href="#note" data-go="note">The note</a>
+      <a href="#details" data-go="details">Details</a>
+      <a class="pill" href="#rsvp" data-go="rsvp">RSVP</a>
+    </div>
+  </nav>
+
+  <div class="hero-in wrap">
+    <div class="h-top">
+      <p class="tag"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg>You’re invited<svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg></p>
+      <h1 class="title" id="title" aria-label="The Chair’s Table"><span class="ln" aria-hidden="true">The Chair’s</span><span class="ln" aria-hidden="true">Table</span></h1>
+      <p class="tagline">Good food. Great company.</p>
+    </div>
+
+    <div class="art" aria-hidden="true">
+      <div class="disk"></div>
+      <div class="plate"></div>
+      <svg class="food f-pizza" viewBox="0 0 120 120"><use href="#i-pizza"/></svg>
+      <svg class="food f-fries" viewBox="0 0 120 120"><use href="#i-fries"/></svg>
+      <svg class="food f-burger" viewBox="0 0 120 120"><use href="#i-burger"/></svg>
+      <svg class="food f-soda" viewBox="0 0 120 120"><use href="#i-soda"/></svg>
+      <div class="badge"><svg viewBox="0 0 120 120"><use href="#i-burst"/></svg><b>Come<br>hungry!</b></div>
+      <svg class="sp" viewBox="0 0 120 120" style="left:38%;top:0;width:7%;color:#FFF0D9"><use href="#i-spark"/></svg>
+      <svg class="sp" viewBox="0 0 120 120" style="left:-4%;top:36%;width:6%;color:#F7CF55;animation-delay:-1s"><use href="#i-spark"/></svg>
+      <svg class="sp" viewBox="0 0 120 120" style="right:6%;bottom:6%;width:8%;color:#FFF0D9;animation-delay:-1.8s"><use href="#i-spark"/></svg>
+      <svg class="sp" viewBox="0 0 120 120" style="left:30%;bottom:-1%;width:6%;color:#F26B50;animation-delay:-.6s"><use href="#i-star"/></svg>
+    </div>
+
+    <div class="h-bot">
+      <svg class="squig" viewBox="0 0 160 16" aria-hidden="true"><use href="#i-squig"/></svg>
+      <p class="when">
+        <span>Friday <svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg> 27 November <svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg> 1 PM</span>
+        <span>Madchef &amp; Cheez <svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg> Bailey Road</span>
+      </p>
+      <div class="cta-row">
+        <a class="cta" href="#rsvp" data-go="rsvp" data-yes>Count me in!</a>
+        <p class="aside hand"><svg viewBox="0 0 120 60" aria-hidden="true"><use href="#i-arrow"/></svg>no meetings, promise!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true"><div>
+    <span>Good food <svg viewBox="0 0 120 120"><use href="#i-star"/></svg> Great company <svg viewBox="0 0 120 120"><use href="#i-star"/></svg> No meetings <svg viewBox="0 0 120 120"><use href="#i-star"/></svg> Just eats <svg viewBox="0 0 120 120"><use href="#i-star"/></svg> Come hungry <svg viewBox="0 0 120 120"><use href="#i-star"/></svg></span>
+    <span>Good food <svg viewBox="0 0 120 120"><use href="#i-star"/></svg> Great company <svg viewBox="0 0 120 120"><use href="#i-star"/></svg> No meetings <svg viewBox="0 0 120 120"><use href="#i-star"/></svg> Just eats <svg viewBox="0 0 120 120"><use href="#i-star"/></svg> Come hungry <svg viewBox="0 0 120 120"><use href="#i-star"/></svg></span>
+  </div></div>
+</header>
+
+<main>
+  <section class="note" id="note">
+    <div class="wave van" aria-hidden="true"></div>
+    <div class="note-in wrap">
+      <div class="note-l">
+        <p class="tag"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg>A little note</p>
+        <h2 class="h2">No meetings. Just eats.</h2>
+        <div class="special" aria-hidden="true">
+          <svg viewBox="0 0 120 120"><use href="#i-pasta"/></svg>
+          <p class="hand">today’s special:<br>zero agendas</p>
+        </div>
+      </div>
+      <div class="paper">
+        <p>After all the meetings, events, deadlines and everything we’ve worked on together, I thought we deserved a little time to simply sit down, eat and enjoy each other’s company.</p>
+        <p>No agendas. No responsibilities. Just good food and good people.</p>
+        <p class="sig">— Chair, <span>IEEE NSU SB WIE AG</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="det" id="details">
+    <div class="wave choco" aria-hidden="true"></div>
+    <div class="det-in wrap">
+      <div class="det-hd">
+        <div>
+          <p class="tag but"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg>When &amp; where</p>
+          <h2 class="h2">The details</h2>
+        </div>
+        <p class="hand">p.s. don’t be late,<br>the fries won’t wait!<svg viewBox="0 0 120 60" aria-hidden="true"><use href="#i-arrow"/></svg></p>
+      </div>
+      <div class="cloth">
+        <div class="cal">
+          <div class="cal-top">November</div>
+          <p class="cal-num">27</p>
+          <p class="cal-day">Friday</p>
+        </div>
+        <div class="clock">
+          <svg class="sh" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-burst"/></svg>
+          <svg class="fg" viewBox="0 0 120 120" aria-hidden="true"><use href="#i-burst"/></svg>
+          <div><b>1:00 PM</b><i>lunch is served</i></div>
+        </div>
+        <div class="tkt-w">
+          <div class="tkt">
+            <div class="stub" aria-hidden="true">Admit one</div>
+            <div class="tkt-m">
+              <small>The spot</small>
+              <strong>Madchef &amp; Cheez</strong>
+              <span>Bailey Road, Dhaka</span>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Madchef%20%26%20Cheez%20Bailey%20Road%20Dhaka" target="_blank" rel="noopener">View on map →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rsvp" id="rsvp">
+    <div class="wave lav" aria-hidden="true"></div>
+    <div class="rsvp-in wrap">
+      <div>
+        <p class="tag"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg>RSVP</p>
+        <h2 class="h2">So, are you in?</h2>
+        <p class="rsvp-sub">Save your seat at the table!</p>
+        <div class="r-art" aria-hidden="true">
+          <svg class="food r-fries" viewBox="0 0 120 120"><use href="#i-fries"/></svg>
+          <svg class="food r-soda" viewBox="0 0 120 120"><use href="#i-soda"/></svg>
+          <svg class="sp" viewBox="0 0 120 120" style="left:82%;top:4%;width:10%;color:#F7CF55"><use href="#i-spark"/></svg>
+          <p class="r-note hand">takes 10 seconds<svg viewBox="0 0 120 60"><use href="#i-arrow"/></svg></p>
+        </div>
+      </div>
+
+      <div class="check" id="check">
+        <div class="check-hd"><h3>Guest check</h3><span>No. 0027</span></div>
+        <div class="check-meta"><span>Table: The Chair’s</span><span>Date: 27 Nov</span><span>Server: your Chair</span></div>
+
+        <form class="ask check-bd" id="ask" novalidate>
+          <div class="fld">
+            <label class="lbl" for="name">Full name</label>
+            <input class="inp" id="name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Write your full name">
+          </div>
+          <fieldset class="fld">
+            <legend class="lbl">Attendance</legend>
+            <div class="opts">
+              <label class="opt y"><input type="radio" name="att" id="att-yes" value="yes"><span><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg>Yes, I’m coming!</span></label>
+              <label class="opt n"><input type="radio" name="att" id="att-no" value="no"><span><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg>Sorry, can’t make it.</span></label>
+            </div>
+          </fieldset>
+          <p class="err" id="err" role="alert"></p>
+          <button class="reserve" id="reserve" type="submit"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#i-star"/></svg><span id="reserve-label">Reserve my seat</span></button>
+        </form>
+
+        <div class="done y check-bd">
+          <h3 class="stamp" id="stamp-y" tabindex="-1">Seat saved!</h3>
+          <ul class="lines">
+            <li><span>Guest</span><i></i><span class="v-name"></span></li>
+            <li><span>Attending</span><i></i><span>Yes!</span></li>
+            <li class="tot"><span>See you</span><i></i><span>Fri, 1 PM</span></li>
+          </ul>
+          <p class="msg">Your seat at the table is saved. Come hungry!</p>
+          <div class="acts">
+            <a class="chip" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=The%20Chair%E2%80%99s%20Table&amp;dates=20261127T070000Z%2F20261127T090000Z&amp;location=Madchef%20%26%20Cheez%2C%20Bailey%20Road%2C%20Dhaka&amp;details=Lunch%20with%20the%20team%20at%20The%20Chair%E2%80%99s%20Table"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Add to calendar</a>
+            <button class="edit" type="button">Edit my RSVP</button>
+          </div>
+        </div>
+
+        <div class="done n check-bd">
+          <h3 class="stamp" id="stamp-n" tabindex="-1">Missed you!</h3>
+          <ul class="lines">
+            <li><span>Guest</span><i></i><span class="v-name"></span></li>
+            <li><span>Attending</span><i></i><span>Can’t make it</span></li>
+          </ul>
+          <p class="msg">No worries. We’ll save you a fry.</p>
+          <p class="small">Plans changed? You can edit your RSVP until <b>11:59 PM, Thu 26 Nov</b>.</p>
+          <div class="acts"><button class="edit" type="button">Edit my RSVP</button></div>
+        </div>
+
+        <div class="check-ft"><span>Kindly reply by <b>11:59 PM, Thu 26 Nov</b></span><i>Thank you, come again!</i></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="floor" aria-hidden="true"></div>
+<footer class="foot">
+  <div class="foot-in wrap">
+    <div>
+      <strong>The Chair’s Table</strong>
+      <p>A lunch for the team, hosted by your Chair.<br>Friday 27 November · 1 PM · Madchef &amp; Cheez, Bailey Road</p>
+    </div>
+    <p class="hand">see you at the table ♡</p>
+  </div>
+</footer>
+<p class="ribbon" id="ribbon" hidden>Preview only: answers aren’t saved here</p>
+<div class="bits" id="bits" aria-hidden="true"></div>
+
+<script>
+{
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const KEY = 'chairs-table-rsvp';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const body = document.body;
+
+  // Hero title: each line fills the column, like a poster
+  const title = $('#title');
+  const fitTitle = () => {
+    const avail = title.clientWidth;
+    if (!avail) return;
+    $$('#title .ln').forEach((l, i) => {
+      l.style.fontSize = '100px';
+      const w = l.getBoundingClientRect().width;
+      if (!w) return;
+      const max = i === 0 ? 132 : 196;
+      l.style.fontSize = Math.max(34, Math.min(max, Math.floor(100 * avail / w * 0.97))) + 'px';
+    });
+  };
+  fitTitle();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);
+  addEventListener('resize', fitTitle);
+
+  // In-page links scroll smoothly; "Count me in!" also ticks Yes
+  const nameEl = $('#name'), err = $('#err');
+  const go = id => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' }); };
+  $$('[data-go]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    go(a.dataset.go);
+    if (a.hasAttribute('data-yes') && !body.dataset.a) {
+      $('#att-yes').checked = true;
+      setTimeout(() => nameEl.focus({ preventScroll: true }), reduce.matches ? 0 : 650);
+    }
+  }));
+
+  // Sparkle confetti from the stamp
+  const layer = $('#bits');
+  const COLORS = ['#F7CF55', '#F26B50', '#FFF0D9', '#DFA8EA'];
+  const confetti = el => {
+    if (reduce.matches || !el) return;
+    const r = el.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    for (let i = 0; i < 22; i++) {
+      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      s.setAttribute('viewBox', '0 0 120 120');
+      s.setAttribute('class', 'bit');
+      s.innerHTML = `<use href="#${i % 2 ? 'i-star' : 'i-spark'}"/>`;
+      const size = 14 + Math.random() * 16;
+      s.style.cssText = `left:${cx}px;top:${cy}px;width:${size}px;height:${size}px;color:${COLORS[i % 4]}`;
+      layer.append(s);
+      const ang = Math.random() * Math.PI * 2, dist = 90 + Math.random() * 170;
+      const dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist - 60;
+      const rot = (Math.random() - 0.5) * 540;
+      const anim = s.animate([
+        { transform: 'translate(-50%,-50%) scale(.2)', opacity: 0, easing: 'cubic-bezier(.2,.8,.4,1)' },
+        { transform: `translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px)) scale(1) rotate(${rot / 2}deg)`, opacity: 1, offset: 0.4, easing: 'cubic-bezier(.5,0,.9,.6)' },
+        { transform: `translate(calc(-50% + ${dx * 1.2}px),calc(-50% + ${dy + 260}px)) scale(.8) rotate(${rot}deg)`, opacity: 0 }
+      ], { duration: 1300 + Math.random() * 600, fill: 'forwards' });
+      anim.onfinish = () => s.remove();
+    }
+  };
+
+  // RSVP: saved to the Google Sheet through Apps Script.
+  // For GitHub Pages: paste your Apps Script web app link (ends in /exec) between the quotes.
+  const RSVP_URL = 'https://script.google.com/macros/s/AKfycbw5DYFLFQGqbqpoK1Jg0v0Amfc8fCQWwg9R6-mPG-WsIvQDcrWf7OZ_30p3lbXMFgrX/exec';
+  const form = $('#ask'), btn = $('#reserve'), btnLabel = $('#reserve-label');
+  const gas = !!(window.google && google.script && google.script.run);
+  const remote = /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(RSVP_URL.trim());
+  if (!gas && !remote) { $('#ribbon').hidden = false; body.classList.add('preview'); }
+  const save = (name, answer) => new Promise((resolve, reject) => {
+    if (gas) {
+      google.script.run.withSuccessHandler(resolve).withFailureHandler(reject).submitRsvp(name, answer);
+    } else if (remote) {
+      // Plain-text body keeps this a simple request, which Apps Script accepts from any site
+      fetch(RSVP_URL.trim(), { method: 'POST', body: JSON.stringify({ name, answer }) })
+        .then(r => r.json())
+        .then(j => (j && j.ok ? resolve() : reject(new Error((j && j.error) || 'Not saved'))))
+        .catch(reject);
+    } else {
+      setTimeout(resolve, 700); // preview only: nothing is saved
+    }
+  });
+  const remember = v => { try { v ? localStorage.setItem(KEY, JSON.stringify(v)) : localStorage.removeItem(KEY); } catch (e) {} };
+  const busy = on => {
+    btn.disabled = on;
+    $$('#ask input').forEach(el => { el.disabled = on; });
+    btn.classList.toggle('loading', on);
+    btnLabel.textContent = on ? 'Saving your seat…' : 'Reserve my seat';
+  };
+  const show = (ans, name, fresh) => {
+    $$('.v-name').forEach(el => { el.textContent = name; });
+    body.dataset.a = ans;
+    if (!fresh) return;
+    const stamp = $(ans === 'yes' ? '#stamp-y' : '#stamp-n');
+    stamp.classList.remove('go'); void stamp.offsetWidth; stamp.classList.add('go');
+    stamp.focus({ preventScroll: true });
+    const top = $('#check').getBoundingClientRect().top;
+    if (top < 0) $('#check').scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' });
+    if (ans === 'yes') setTimeout(() => confetti(stamp), reduce.matches ? 0 : 280);
+  };
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = nameEl.value.replace(/\s+/g, ' ').trim();
+    const att = form.querySelector('input[name=att]:checked');
+    if (!name) { err.textContent = 'Please write your full name first.'; nameEl.focus(); return; }
+    if (!att) { err.textContent = 'Pick one: are you coming or not?'; $('#att-yes').focus(); return; }
+    const ans = att.value;
+    err.textContent = '';
+    busy(true);
+    save(name, ans === 'yes' ? 'Yes' : 'No')
+      .then(() => {
+        busy(false);
+        show(ans, name, true);
+        remember({ a: ans, name });
+      })
+      .catch(ex => {
+        busy(false);
+        err.textContent = 'Hmm, that didn’t save. Check your connection and try again.' + (ex && ex.message ? ' (' + ex.message + ')' : '');
+      });
+  });
+
+  $$('.edit').forEach(b => b.addEventListener('click', () => {
+    delete body.dataset.a;
+    remember(null);
+    nameEl.focus({ preventScroll: true });
+  }));
+
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (s && (s.a === 'yes' || s.a === 'no') && typeof s.name === 'string') {
+      nameEl.value = s.name;
+      $(s.a === 'yes' ? '#att-yes' : '#att-no').checked = true;
+      show(s.a, s.name, false);
+    }
+  } catch (e) {}
+}
+</script>
+</body>
+</html>
